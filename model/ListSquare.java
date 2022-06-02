@@ -77,6 +77,16 @@ public class ListSquare{
     return this.arrSquare[row][col];
   }
 
+   //add method
+   public int getRows() {
+    return this.NUM_ROWS;
+  }
+
+  //add method
+  public int getCols(){
+    return this.NUM_COLUMNS;
+  }
+
   //NEW CODE HERE
   //open cell khong co min, overgame neu opened cell co min - return true
   public boolean play(int x, int y) {
@@ -135,5 +145,23 @@ public class ListSquare{
   public int getMines(){
     return this.NUM_MINES;
   }
+
+  // methods called from ManageSquare - updateBoard()
+  public boolean SquareOpen(int i, int j){
+    return this.arrSquare[i][j].isOpen();
+  }
+
+  public boolean SquareTarget(int i, int j){
+    return this.arrSquare[i][j].isTarget();
+  }
+
+  public boolean SquareMine(int i, int j){
+    return this.arrSquare[i][j].isHasMine();
+  }
+
+  public int ArroundMines(int i, int j){
+    return this.arrSquare[i][j].getNumMineAround();
+  }
+  
 
 }

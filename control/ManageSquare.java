@@ -45,5 +45,24 @@ public class ManageSquare {
   public void restart() {
     listSquare = new ListSquare();
     boardPanel.updateBoard();
-  }  
+  } 
+  
+  // methods called from updateBoard()
+  public boolean itSquareOpen(int i, int j){
+    return this.listSquare.SquareOpen(i,j);
+  }
+
+  public boolean itSquareTarget(int i, int j){
+    return this.listSquare.SquareTarget(i,j);
+  }
+
+  public boolean itSquareMine(int i, int j){
+    return this.listSquare.SquareMine(i,j);
+  }
+
+  public int itArroundMines(int i, int j){
+    return this.listSquare.ArroundMines(i,j);
+  }
+
+
 }
