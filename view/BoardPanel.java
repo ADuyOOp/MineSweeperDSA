@@ -22,8 +22,8 @@ public class BoardPanel extends JPanel{
   public BoardPanel(ManageSquare manageSquare) {
     this.manageSquare = manageSquare;
     ListSquare listSquare = this.manageSquare.getListSquare();
-    // numRows = listSquare.getArrSquare().length;
-    // numCols = listSquare.getArrSquare()[0].length;
+    //numRows = listSquare.getArrSquare().length;
+    //numCols = listSquare.getArrSquare()[0].length;
     numRows = listSquare.getRows();
     numCols = listSquare.getCols();
 
@@ -78,17 +78,19 @@ public class BoardPanel extends JPanel{
     numSquareClosed = 0;
     //Square[][] ArrSquare = this.manageSquare.getListSquare().getArrSquare();
 
+    //for (int i = 0; i < ArrSquare.length; i++) {
+      //for (int j = 0; j < ArrSquare[0].length; j++) {
     for (int i = 0; i < this.numRows; i++) {
-      for (int j = 0; j < this.numCols; j++) {
+      for (int j = 0; j < this.numCols; j++) {          
         lbSquare[i][j].setFont(font);
         //neu cell chua open
-        // if (!ArrSquare[i][j].isOpen()) {
-        if (!manageSquare.itSquareOpen(i,j)) {  
+        //if (!ArrSquare[i][j].isOpen()) {
+        if (!manageSquare.itSquareOpen(i,j)) {
           lbSquare[i][j].setBackground(new Color(242, 242, 242));
           lbSquare[i][j].setForeground(Color.black);
           numSquareClosed++;
           //neu cell chua dat flag
-          // if (!ArrSquare[i][j].isTarget()) {
+          //if (!ArrSquare[i][j].isTarget()) {
           if (!manageSquare.itSquareTarget(i,j)) {
             lbSquare[i][j].setText("");
           } else {
@@ -97,12 +99,12 @@ public class BoardPanel extends JPanel{
         //neu cell da open  
         } else {
           //neu cell co min
-          // if (ArrSquare[i][j].isHasMine()) {
+          //if (ArrSquare[i][j].isHasMine()) {
           if (manageSquare.itSquareMine(i,j)) {
             lbSquare[i][j].setText("\uD83D\uDCA3"); // ki tu 'bomb'
           //neu cell khong co min  
           } else {
-            // int numMineAround = ArrSquare[i][j].getNumMineAround();
+            //int numMineAround = ArrSquare[i][j].getNumMineAround();
             int numMineAround = manageSquare.itArroundMines(i,j);
             //neu xung quanh cell khong co min
             if (numMineAround == 0) {
@@ -163,5 +165,10 @@ public class BoardPanel extends JPanel{
    
   public int getNumSquareClosed() {
     return numSquareClosed;
+  }
+
+  //use for UNDO
+  public void setNumSquareClosed(int bufferSquareClosed) {
+    numSquareClosed = bufferSquareClosed;
   }
 }

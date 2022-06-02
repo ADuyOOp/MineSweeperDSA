@@ -57,8 +57,8 @@ public class MainFrame extends JFrame{
     WindowListener wd = new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
-        int kq = JOptionPane.showConfirmDialog(MainFrame.this, "Bạn có muốn thoát không?",
-         "Thông báo", JOptionPane.YES_NO_OPTION);
+        int kq = JOptionPane.showConfirmDialog(MainFrame.this, "Do you want to exit game?",
+         "Information", JOptionPane.YES_NO_OPTION);
         if (kq == JOptionPane.YES_OPTION) {
           dispose();
         }

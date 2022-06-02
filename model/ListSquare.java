@@ -10,16 +10,27 @@ public class ListSquare{
   private Square[][] arrSquare;
  
   public ListSquare() {
-    arrSquare = new Square[NUM_ROWS][NUM_COLUMNS];
-    for (int i = 0; i < arrSquare.length; i++) {
-      for (int j = 0; j < arrSquare[0].length; j++) {
-        arrSquare[i][j] = new Square();
+    //if (iList == 1){
+      arrSquare = new Square[NUM_ROWS][NUM_COLUMNS];
+      for (int i = 0; i < arrSquare.length; i++) {
+        for (int j = 0; j < arrSquare[0].length; j++) {
+          arrSquare[i][j] = new Square();
+        }
       }
-    }
  
-    layMines();
-    setMines();    
+      layMines();
+      setMines();
+    // }else{
+    //   arrSquare = new Square[NUM_ROWS][NUM_COLUMNS];
+    //   for (int i = 0; i < arrSquare.length; i++) {
+    //     for (int j = 0; j < arrSquare[0].length; j++) {
+    //       arrSquare[i][j] = new Square();
+    //     }
+    //   }
+    // }        
   }
+
+
 
   //Dat min ngau nhien vao ma tran cell
   private void layMines(){
@@ -73,18 +84,19 @@ public class ListSquare{
     return arrSquare;
   }  
 
-  public Square getSquare(int row, int col){
-    return this.arrSquare[row][col];
-  }
-
-   //add method
-   public int getRows() {
+  //add method
+  public int getRows() {
     return this.NUM_ROWS;
   }
 
   //add method
   public int getCols(){
     return this.NUM_COLUMNS;
+  }
+
+  //use for UNDO
+  public Square getSquare(int row, int col){
+    return this.arrSquare[row][col];
   }
 
   //NEW CODE HERE
@@ -162,6 +174,7 @@ public class ListSquare{
   public int ArroundMines(int i, int j){
     return this.arrSquare[i][j].getNumMineAround();
   }
+  
   
 
 }

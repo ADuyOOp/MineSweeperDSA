@@ -11,7 +11,7 @@ public class Square {
     }
     public void setOpen(boolean isOpen) {
       this.isOpen = isOpen;
-    }
+    }    
     public boolean isHasMine() {
       return hasMine;
     }
@@ -29,5 +29,13 @@ public class Square {
     }
     public void setTarget(boolean isTarget) {
       this.isTarget = isTarget;
+    }
+
+    //use for UNDO
+    public void assignment(Square square){
+      this.isOpen = square.isOpen;
+      this.hasMine = square.hasMine;
+      this.isTarget = square.isTarget;
+      this.numMineAround = square.numMineAround;
     }
   }

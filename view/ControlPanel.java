@@ -16,6 +16,9 @@ public class ControlPanel extends JPanel{
   private JLabel lbNotify;
   private JButton btnRestart;
 
+  //use for UNDO
+  private JButton btnUndo;
+
   private ManageSquare manageSquare;
   private int numRows, numCols, numMines;
   
@@ -31,6 +34,9 @@ public class ControlPanel extends JPanel{
     initComp();
     addComp();
     addEvent();
+
+    //use for UNDO
+    addUndoEvent();
   } 
   
   public void initComp() {
@@ -38,24 +44,32 @@ public class ControlPanel extends JPanel{
   } 
   
   public void addComp() {
-    Font font = new Font("VNI", Font.PLAIN, 20);
+    Font font = new Font("VNI", Font.PLAIN, 12);
  
     lbNumSquareClosed = new JLabel();
     lbNumSquareClosed.setFont(font);
-    lbNumSquareClosed.setText("Số ô chưa mở: " + numRows * numCols);
-    lbNumSquareClosed.setBounds(10, 10, 250, 40);
+    lbNumSquareClosed.setText("Number cell closed: " + numRows * numCols);
+    lbNumSquareClosed.setBounds(10, 10, 150, 40);
     add(lbNumSquareClosed);
  
     lbNotify = new JLabel();
     lbNotify.setFont(font);
-    lbNotify.setBounds(270, 10, 200, 40);
+    lbNotify.setBounds(200, 10, 100, 40);
+    lbNotify.setText("");
     add(lbNotify);
+
+    //use for UNDO
+    btnUndo = new JButton();
+    btnUndo.setFont(font);
+    btnUndo.setText("Undo");
+    btnUndo.setBounds(350, 10, 100, 40);
+    add(btnUndo);
  
     btnRestart = new JButton();
-    btnRestart.setFont(font);
-    btnRestart.setText("Chơi lại");
-    btnRestart.setBounds(490, 10, 200, 40);
-    add(btnRestart);
+    btnRestart.setFont(font);    
+    btnRestart.setText("New Game");
+    btnRestart.setBounds(550, 10, 100, 40);
+    add(btnRestart);    
   } 
   
   public void addEvent() {
@@ -63,19 +77,30 @@ public class ControlPanel extends JPanel{
       @Override
       public void actionPerformed(ActionEvent e) {
         manageSquare.restart();
-        lbNumSquareClosed.setText("Số ô chưa mở: " + numRows * numCols);
+        lbNumSquareClosed.setText("Number cell closed: " + numRows * numCols);
         lbNotify.setText("");
       }
     });
   }  
+
+  //use for UNDO
+  private void addUndoEvent() {
+    btnUndo.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        manageSquare.undo();
+        lbNotify.setText("");
+      }
+    });
+  }
  
   public void updateStatus(int numSquareClosed) {
-    lbNumSquareClosed.setText("Số ô chưa mở: " + numSquareClosed);
+    lbNumSquareClosed.setText("Number cell closed: " + numSquareClosed);
     if (numSquareClosed == this.numMines) {
-      lbNotify.setText("THẮNG");
+      lbNotify.setText("YOU WIN");
       lbNotify.setForeground(Color.blue);
     } else if (numSquareClosed == 0) {
-      lbNotify.setText("THUA");
+      lbNotify.setText("YOU LOST");
       lbNotify.setForeground(Color.red);
     }
   }
