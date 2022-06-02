@@ -16,11 +16,6 @@ public class ManageSquare {
 
      //use for UNDO
      bufferSquare = new ListSquare();
-
-    // System.out.println("matrix list:");
-    // this.printList(this.listSquare.getArrSquare());
-    // System.out.println("matrix buffer:");
-    // this.printList(this.bufferSquare.getArrSquare());
   }	
 
   public ListSquare getListSquare(){
@@ -41,23 +36,14 @@ public class ManageSquare {
     int cols =  listSquare.getCols();
     for(int i=0; i<rows; i++)
       for (int j=0; j<cols; j++){
-        // Square square = listSquare.getSquare(i, j);
-        // bufferSquare.getSquare(i, j).assignment(square);
+        
         Square lSquare = listSquare.getSquare(i, j);
         Square bSquare = bufferSquare.getSquare(i, j);
         bSquare.assignment(lSquare);
-        //gan(lSquare,bSquare);
+
 
       }          
   }
-
-  // private void gan(Square lSquare, Square bSquare){
-  //   bSquare.setOpen(lSquare.isOpen());
-  //   bSquare.setHasMine(lSquare.isHasMine());
-  //   bSquare.setTarget(lSquare.isTarget());
-  //   bSquare.setNumMineAround(lSquare.getNumMineAround());
-  // }
-
   //use for UNDO
   private void restoreList(){
     int rows =  listSquare.getRows();
@@ -91,12 +77,6 @@ public class ManageSquare {
 
     listSquare.target(x, y);
 
-    // System.out.println("list:");
-    // this.printList(this.listSquare.getArrSquare());  
-    
-    // System.out.println("buffer:");
-    // this.printList(this.bufferSquare.getArrSquare());
-  
     boardPanel.updateBoard();
   }
   
@@ -134,19 +114,4 @@ public class ManageSquare {
 
     controlPanel.updateStatus(this.bufferSquareClosed);
   }
-
-  // private void printList(Square[][] aSquares){
-  //   int flag = 0;
-  //   for(int i=0; i<aSquares.length; i++){
-  //     for(int j=0; j<aSquares[0].length; j++){
-  //       boolean bflag = aSquares[i][j].isTarget();
-  //       if(bflag)
-  //         flag = 1;
-  //       else
-  //         flag = 0;
-  //       System.out.print("  " + flag);
-  //     }
-  //     System.out.println(); 
-  //   }    
-  // }
 }

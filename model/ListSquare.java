@@ -20,14 +20,6 @@ public class ListSquare{
  
       layMines();
       setMines();
-    // }else{
-    //   arrSquare = new Square[NUM_ROWS][NUM_COLUMNS];
-    //   for (int i = 0; i < arrSquare.length; i++) {
-    //     for (int j = 0; j < arrSquare[0].length; j++) {
-    //       arrSquare[i][j] = new Square();
-    //     }
-    //   }
-    // }        
   }
 
 

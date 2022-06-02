@@ -25,8 +25,7 @@ public class ControlPanel extends JPanel{
   public ControlPanel(ManageSquare manageSquare) {
     this.manageSquare = manageSquare;
     ListSquare listSquare = this.manageSquare.getListSquare();
-    // numRows = listSquare.getArrSquare().length;
-    // numCols = listSquare.getArrSquare()[0].length;
+  
     numRows = listSquare.getRows();
     numCols = listSquare.getCols();
     numMines = listSquare.getMines();
