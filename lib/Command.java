@@ -1,12 +1,9 @@
 package lib;
 
- import model.ListSquare;
+public interface Command<T>{
+    public T undo(T lSquare);
+    public T redo(T lSquare);
 
-public interface Command{
-
-    public ListSquare undo(ListSquare lSquare);
-    public ListSquare redo(ListSquare lSquare);
-
-    public void add(ListSquare lSquare);
+    public void add(T lSquare);
 
 }

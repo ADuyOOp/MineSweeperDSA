@@ -1,22 +1,21 @@
 package lib;
 
-import model.*;
 import java.util.Stack;
 
 public class Buffer {
-    private Stack<ListSquare> bufferList;
+    private Stack<Object> bufferList;
 
 
     public Buffer(){
         this.bufferList = new Stack<>();
     }
 
-    public void add(ListSquare lSquare){
+    public void add(Object lSquare){
         this.bufferList.push(lSquare);
     }
 
-    public ListSquare remove(){
-        ListSquare lSquare = null;
+    public Object remove(){
+        Object lSquare = null;
         if(!this.bufferList.isEmpty()){
             lSquare =  this.bufferList.pop();
         }        

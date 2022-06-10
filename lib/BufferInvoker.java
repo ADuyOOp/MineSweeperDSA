@@ -1,35 +1,30 @@
 package lib;
 
-import model.*;
-
-public class BufferInvoker implements Command{
+public class BufferInvoker implements Command<Object>{
     private Buffer buffer, temp;    
 
 
     public BufferInvoker(){
         this.buffer = new Buffer();
         this.temp = new Buffer();            
-    }    
+    }
 
     public Buffer getBuffer(){
         return this.buffer;
     }
 
     @Override
-    //public ListSquare undo(ListSquare lSquare) {
-    public ListSquare undo(ListSquare lSquare) {
-
+    public Object undo(Object lSquare) {
         // TODO Auto-generated method stub
         if(!this.buffer.isEmpty()){
             this.temp.add(lSquare);
             lSquare = this.buffer.remove();
         }
         return lSquare;
-
     }
 
     @Override
-    public ListSquare redo(ListSquare lSquare) {
+    public Object redo(Object lSquare) {
         // TODO Auto-generated method stub
         if(!this.temp.isEmpty()){
             this.buffer.add(lSquare);
@@ -37,10 +32,9 @@ public class BufferInvoker implements Command{
         }
         return lSquare;
     }
-    
 
     @Override
-    public void add(ListSquare lSquare) {
+    public void add(Object lSquare) {
         // TODO Auto-generated method stub
         this.buffer.add(lSquare);  
         if(!this.temp.isEmpty()) {
