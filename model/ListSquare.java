@@ -2,7 +2,7 @@
 
 import java.util.Random;
  
-public class ListSquare{
+public class ListSquare {
   private final int NUM_ROWS = 15;
   private final int NUM_COLUMNS = 20;
   private final int NUM_MINES = NUM_ROWS * NUM_COLUMNS / 10;
@@ -22,7 +22,9 @@ public class ListSquare{
       setMines();
   }
 
-
+  public Square[][] getArrSquare(){
+    return this.arrSquare;
+  }
 
   //Dat min ngau nhien vao ma tran cell
   private void layMines(){
@@ -72,11 +74,7 @@ public class ListSquare{
     return rd.nextInt(range);
   }
  
-  public Square[][] getArrSquare() {
-    return arrSquare;
-  }  
-
-  //add method
+    //add method
   public int getRows() {
     return this.NUM_ROWS;
   }
@@ -165,8 +163,6 @@ public class ListSquare{
 
   public int ArroundMines(int i, int j){
     return this.arrSquare[i][j].getNumMineAround();
-  }
-  
-  
+  }  
 
 }

@@ -19,13 +19,15 @@ public class ControlPanel extends JPanel{
   //use for UNDO
   private JButton btnUndo;
 
+  //use for REDO
+  private JButton btnRedo;
+
   private ManageSquare manageSquare;
   private int numRows, numCols, numMines;
   
   public ControlPanel(ManageSquare manageSquare) {
     this.manageSquare = manageSquare;
     ListSquare listSquare = this.manageSquare.getListSquare();
-  
     numRows = listSquare.getRows();
     numCols = listSquare.getCols();
     numMines = listSquare.getMines();
@@ -34,8 +36,8 @@ public class ControlPanel extends JPanel{
     addComp();
     addEvent();
 
-    //use for UNDO
-    addUndoEvent();
+    //use for UNDO/REDO
+    addDoEvent();
   } 
   
   public void initComp() {
@@ -63,11 +65,19 @@ public class ControlPanel extends JPanel{
     btnUndo.setText("Undo");
     btnUndo.setBounds(350, 10, 100, 40);
     add(btnUndo);
+
+    //use for REDO
+    btnRedo = new JButton();
+    btnRedo.setFont(font);
+    btnRedo.setText("Redo");
+    btnRedo.setBounds(470, 10, 100, 40);
+    add(btnRedo);
+ 
  
     btnRestart = new JButton();
     btnRestart.setFont(font);    
     btnRestart.setText("New Game");
-    btnRestart.setBounds(550, 10, 100, 40);
+    btnRestart.setBounds(590, 10, 100, 40);
     add(btnRestart);    
   } 
   
@@ -82,12 +92,20 @@ public class ControlPanel extends JPanel{
     });
   }  
 
-  //use for UNDO
-  private void addUndoEvent() {
+  //use for UNDO/REDO
+  private void addDoEvent() {
     btnUndo.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         manageSquare.undo();
+        lbNotify.setText("");
+      }
+    });
+
+    btnRedo.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        manageSquare.redo();
         lbNotify.setText("");
       }
     });
@@ -102,5 +120,12 @@ public class ControlPanel extends JPanel{
       lbNotify.setText("YOU LOST");
       lbNotify.setForeground(Color.red);
     }
+  }
+
+  public JButton getBtnUndo(){
+    return this.btnUndo;
+  }
+  public JButton getBtnRedo(){
+    return this.btnRedo;
   }
 }

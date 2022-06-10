@@ -1,11 +1,11 @@
 package model;
 
-public class Square {
+public class Square {//implements Cloneable{
     private boolean isOpen;
     private boolean hasMine;
     private boolean isTarget;
     private int numMineAround;   
-   
+  
     public boolean isOpen() {
       return isOpen;
     }

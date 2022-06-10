@@ -74,17 +74,16 @@ public class BoardPanel extends JPanel{
   public void updateBoard() {
     Font font = new Font("VNI", Font.PLAIN, 20);
     numSquareClosed = 0;
+
     for (int i = 0; i < this.numRows; i++) {
       for (int j = 0; j < this.numCols; j++) {          
         lbSquare[i][j].setFont(font);
         //neu cell chua open
-
         if (!manageSquare.itSquareOpen(i,j)) {
           lbSquare[i][j].setBackground(new Color(242, 242, 242));
           lbSquare[i][j].setForeground(Color.black);
           numSquareClosed++;
           //neu cell chua dat flag
-
           if (!manageSquare.itSquareTarget(i,j)) {
             lbSquare[i][j].setText("");
           } else {
@@ -93,12 +92,10 @@ public class BoardPanel extends JPanel{
         //neu cell da open  
         } else {
           //neu cell co min
-          //if (ArrSquare[i][j].isHasMine()) {
           if (manageSquare.itSquareMine(i,j)) {
             lbSquare[i][j].setText("\uD83D\uDCA3"); // ki tu 'bomb'
           //neu cell khong co min  
           } else {
-  
             int numMineAround = manageSquare.itArroundMines(i,j);
             //neu xung quanh cell khong co min
             if (numMineAround == 0) {
